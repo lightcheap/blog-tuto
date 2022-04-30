@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-/**
- * ブログ作成のチュートリアル
- *
- * */
-class blogController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,6 @@ class blogController extends Controller
     public function index()
     {
         //
-
     }
 
     /**
