@@ -13,7 +13,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        //一旦、なんでもいいからviewを表示する【今は仮表示】
+        return view('blog.index');
     }
 
     /**
