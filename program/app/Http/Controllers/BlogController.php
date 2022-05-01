@@ -18,17 +18,18 @@ class BlogController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * index -> formページに行くまでの準備処理をここでやる
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         //
+        return view('blog.form');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 新規で作成したデータを登録する処理
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -50,7 +51,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * index -> formに行く。ただし、既存データを変更する前処理
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -61,7 +62,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 既存データを変更したデータを更新処理する
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -73,7 +74,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 既存データを削除する処理
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
