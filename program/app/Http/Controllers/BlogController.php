@@ -16,9 +16,10 @@ class BlogController extends Controller
     {
         // 一旦、なんでもいいからviewを表示する【今は仮表示】
         // ここではブログとして書いた分一覧を表示したい。
+        $alldata = Blog::all();
         // blogテーブルを全取得して、表示する
         $_method = "GET";
-        return view('blog.index', compact('_method'));
+        return view('blog.index', compact('_method', 'alldata'));
     }
 
     /**
