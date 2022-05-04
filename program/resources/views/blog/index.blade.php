@@ -19,8 +19,16 @@
         <td>{{ $data->content}}</td>
         <td>{{ $data->img_title}}</td>
         <td>{{ $data->img_path}}</td>
-        <td>編集</td>
-        <td>削除</td>
+        <td>
+            <button type="button" onclick="location.href='{{route('blog.edit', $data->id)}}'">編集</button>
+        </td>
+        <td>
+            <form action="{{route('blog.destroy', $data->id)}}" method="POST" onsubmit="return (confirm('削除します。'));">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <button type="submit" href="#">削除</button>
+            </form>
+        </td>
     </tr>
     @endforeach
 </tbody>

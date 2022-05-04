@@ -53,7 +53,7 @@ class BlogController extends Controller
             'img_path' => $kariimgpath
         ]);
 
-        return view('blog.index');
+        return redirect('/blog');
     }
 
     /**
@@ -99,5 +99,9 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+
+        return redirect('/blog')->with('message', '削除しました');
     }
 }
