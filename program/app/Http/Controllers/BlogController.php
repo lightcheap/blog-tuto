@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Mockery\Exception;
 
 class BlogController extends Controller
 {
@@ -62,7 +64,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -73,9 +75,14 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
+        $blog = Blog::findOrFail($id);
+        $_method = 'PUT';
+        $action = "/blog/{$id}";
+
+        return view('blog.form', compact('blog', 'action', '_method'));
     }
 
     /**
@@ -88,6 +95,17 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $blog = Blog::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $blog->save();
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            return back()->withInput();
+        }
+
+        return redirect('/blog')->with('message', '編集完了しました');
     }
 
     /**
@@ -96,7 +114,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
         $blog = Blog::findOrFail($id);
