@@ -12,10 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/editor.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ])
     .autoload({
-        jquery: ['$', 'window.jQuery'],
-        EditorJS: ['EditorJS', 'window.EditorJS']
-    });
+        jquery: ['$', 'jQuery'],
+    })
+    .version();
