@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -13,19 +14,24 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //一旦、なんでもいいからviewを表示する【今は仮表示】
-        return view('blog.index');
+        // 一旦、なんでもいいからviewを表示する【今は仮表示】
+        // ここではブログとして書いた分一覧を表示したい。
+        // blogテーブルを全取得して、表示する
+        $_method = "GET";
+        return view('blog.index', compact('_method'));
     }
 
     /**
-     * index -> formページに行くまでの準備処理をここでやる
+     * index -> 新規作成formページに行くまでの準備処理をここでやる
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-        return view('blog.form');
+        $_method = "POST";
+        $action = '/blog';
+        return view('blog.form', compact('_method', 'action') );
     }
 
     /**
@@ -36,7 +42,17 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $karititle = "とりあえず仮タイトル";
+        $kariimgtitle = "仮画像";
+        $kariimgpath = "path";
+        Blog::create([
+            'title' => $karititle,
+            'content' => $request->input('content'),
+            'img_title' => $kariimgtitle,
+            'img_path' => $kariimgpath
+        ]);
+
+        return view('blog.index');
     }
 
     /**

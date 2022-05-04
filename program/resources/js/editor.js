@@ -57,7 +57,7 @@ $(function () {
     data: function () {
       // 初期表示時の処理
       const v = $('#content').val();
-      return v ? JSON.parse(v) : 'なにか書く'
+      return v ? JSON.parse(v) : '何も内容なし'
     }(),
     onReady: function () {
       // トラッキング

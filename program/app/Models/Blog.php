@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    use HasFactory;
+    // よくわからんけど、今のところファクトリはいらないからコメアウト
+    // use HasFactory;
+
+    protected $blog = null;
 
     protected $fillable = [
         'title',
