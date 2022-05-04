@@ -98,6 +98,8 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($id);
         DB::beginTransaction();
         try {
+            $blog->fill($request->all());
+            $blog->title = "更新したやつ";
             $blog->save();
             DB::commit();
         } catch (Exception $e) {

@@ -10,6 +10,7 @@
     <input id="content" type="hidden" name="content" value="{{ $blog->content ?? ""}}">
   </div>
   <div class="form-group">
+    <input type="hidden" name="action" value="update">
     <button id="submit-btn" class="btn btn-primary" type="button">登録する</button>
   </div>
 </form>
