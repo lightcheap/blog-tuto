@@ -10957,20 +10957,57 @@ var __webpack_exports__ = {};
   !*** ./resources/js/editor.js ***!
   \********************************/
 /* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 // todo:これ多分めっちゃ頭悪いやり方してる。要修正
 // import EditorJS from '@editorjs/editorjs';
 // editor.js本体
 var EditorJS = __webpack_require__(/*! @editorjs/editorjs */ "./node_modules/@editorjs/editorjs/dist/editor.js"); // ヘッダープラグイン。
 
 
-var Header = __webpack_require__(/*! @editorjs/header */ "./node_modules/@editorjs/header/dist/bundle.js");
+var Header = __webpack_require__(/*! @editorjs/header */ "./node_modules/@editorjs/header/dist/bundle.js"); //
+// editor.jsにあるsimpleImageを書いてみる
+
+
+var SimpleImage = /*#__PURE__*/function () {
+  function SimpleImage() {
+    _classCallCheck(this, SimpleImage);
+  }
+
+  _createClass(SimpleImage, [{
+    key: "rendor",
+    value: function rendor() {
+      return document.createElement('input');
+    }
+  }, {
+    key: "save",
+    value: function save(blockContent) {
+      return {
+        url: blockContent.value
+      };
+    }
+  }], [{
+    key: "toolbox",
+    get: function get() {
+      return {
+        title: 'image',
+        icon: '<svg width="17" height="15" viewBox="0 0 336 276" xmlns="http://www.w3.org/2000/svg"><path d="M291 150V79c0-19-15-34-34-34H79c-19 0-34 15-34 34v42l67-44 81 72 56-29 42 30zm0 52l-43-30-56 30-81-67-66 39v23c0 19 15 34 34 34h178c17 0 31-13 34-29zM79 0h178c44 0 79 35 79 79v118c0 44-35 79-79 79H79c-44 0-79-35-79-79V79C0 35 35 0 79 0z"/></svg>'
+      };
+    }
+  }]);
+
+  return SimpleImage;
+}();
 /**
  * editor.js
  */
 
 
 $(function () {
-  // todo:ここのコードリーディングから。そこからcreateできるか試す。
   // 参考：https://qiita.com/yamachita0109/items/2c6c8fd1ef772f7be05b
   // 別タイプの引用ボックス
   // Quoteを継承することで使用可
@@ -10987,12 +11024,13 @@ $(function () {
     autofocus: true,
     placeholder: '記事を作成',
     tools: {
+      image: SimpleImage,
       header: {
         "class": Header,
         config: {
           placeholder: 'ヘッダーを入れる',
           levels: [1, 2, 3, 4, 5, 6],
-          defaultLevel: 1
+          defaultLevel: 2
         }
       } //   quote: Quote,
       //   box: Box,

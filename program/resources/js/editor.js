@@ -4,6 +4,27 @@
 const EditorJS = require('@editorjs/editorjs');
 // ヘッダープラグイン。
 const Header = require('@editorjs/header');
+//
+
+// editor.jsにあるsimpleImageを書いてみる
+class SimpleImage {
+  static get toolbox() {
+    return {
+      title: 'image',
+      icon: '<svg width="17" height="15" viewBox="0 0 336 276" xmlns="http://www.w3.org/2000/svg"><path d="M291 150V79c0-19-15-34-34-34H79c-19 0-34 15-34 34v42l67-44 81 72 56-29 42 30zm0 52l-43-30-56 30-81-67-66 39v23c0 19 15 34 34 34h178c17 0 31-13 34-29zM79 0h178c44 0 79 35 79 79v118c0 44-35 79-79 79H79c-44 0-79-35-79-79V79C0 35 35 0 79 0z"/></svg>'
+    };
+  }
+
+  rendor() {
+    return document.createElement('input');
+  }
+
+  save(blockContent) {
+    return {
+      url: blockContent.value
+    }
+  }
+}
 
 
 
@@ -11,7 +32,7 @@ const Header = require('@editorjs/header');
  * editor.js
  */
 $(function () {
-  // todo:ここのコードリーディングから。そこからcreateできるか試す。
+
   // 参考：https://qiita.com/yamachita0109/items/2c6c8fd1ef772f7be05b
 
   // 別タイプの引用ボックス
@@ -29,6 +50,7 @@ $(function () {
     autofocus: true,
     placeholder: '記事を作成',
     tools: {
+      image: SimpleImage,
       header: {
         class: Header,
         config: {

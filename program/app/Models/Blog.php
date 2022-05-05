@@ -18,4 +18,8 @@ class Blog extends Model
         'img_title',
         'img_path'
     ];
+
+    /**
+     * バリデーションルールを追加しないとね
+     */
 }
