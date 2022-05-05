@@ -1,6 +1,11 @@
 // todo:これ多分めっちゃ頭悪いやり方してる。要修正
 // import EditorJS from '@editorjs/editorjs';
-let EditorJS = require('@editorjs/editorjs');
+// editor.js本体
+const EditorJS = require('@editorjs/editorjs');
+// ヘッダープラグイン。
+const Header = require('@editorjs/header');
+
+
 
 /**
  * editor.js
@@ -22,14 +27,16 @@ $(function () {
   const editor = new EditorJS({
     holder: 'editor',
     autofocus: true,
-    // tools: {
-    //   header: {
-    //     class: Header,
-    //     config: {
-    //       levels: [1, 2, 3],
-    //       defaultLevel: 1,
-    //     }
-    //   },
+    placeholder: '記事を作成',
+    tools: {
+      header: {
+        class: Header,
+        config: {
+          placeholder: 'ヘッダーを入れる',
+          levels: [1, 2, 3, 4, 5, 6],
+          defaultLevel: 2,
+        }
+      },
     //   quote: Quote,
     //   box: Box,
     //   table: Table,
@@ -53,7 +60,7 @@ $(function () {
     //       type: 'text',
     //     }
     //   },
-    // },
+    },
     data: function () {
       // 初期表示時の処理
       const v = $('#content').val();
