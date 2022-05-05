@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('blog.index');
+    // return Route::get('/', [App\Http\Controllers\BlogController::class, 'index']);
+    // 一旦こういう形におさめておく。
+    return redirect()->route('blog.index');
 });
 // ブログのコントローラ
 Route::resource("blog", App\Http\Controllers\BlogController::class);
