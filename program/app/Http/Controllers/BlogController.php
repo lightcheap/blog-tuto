@@ -45,7 +45,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $karititle = "とりあえず仮タイトル";
+        $karititle = $request->title;
         $kariimgtitle = "仮画像";
         $kariimgpath = "path";
         Blog::create([
@@ -94,12 +94,12 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $modify_title = $request->title;
         $blog = Blog::findOrFail($id);
         DB::beginTransaction();
         try {
             $blog->fill($request->all());
-            $blog->title = "更新したやつ";
+            $blog->title = $modify_title;
             $blog->save();
             DB::commit();
         } catch (Exception $e) {
